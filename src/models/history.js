@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         patientID: DataTypes.STRING,
         doctorID: DataTypes.STRING,
         description: DataTypes.TEXT,
+        file: DataTypes.TEXT,
     }, {
         sequelize,
         modelName: 'History',
