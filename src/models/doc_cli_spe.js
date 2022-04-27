@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
             // define association here
         }
     }
-    User.init({
+    Doc_cli_spe.init({
         doctorID: DataTypes.STRING,
         clinicID: DataTypes.STRING,
         specialistID: DataTypes.STRING,

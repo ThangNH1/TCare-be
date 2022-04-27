@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
             // define association here
         }
     }
-    User.init({
+    Clinic.init({
         name: DataTypes.STRING,
         description: DataTypes.TEXT,
         address: DataTypes.STRING,
