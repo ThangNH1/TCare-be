@@ -49,10 +49,68 @@ let getAllUser = () => {
 }
 
 let getUserInfoById = (id) => {
+    return new Promise(async (res, rej) => {
+        try {
+            let user = await db.User.findOne({
+                where: { id: id },
+                raw: true
+            })
+            if (user) {
+                res(user)
+            } else {
+                res('Not found!')
+            }
+        } catch (error) {
+            rej(error)
+        }
+    })
+}
 
+let updateUserData = (data) => {
+    return new Promise(async (res, rej) => {
+        try {
+            let user = await db.User.findOne({
+                where: { id: data.id },
+            })
+            if (user) {
+                user.name = data.fullName
+                user.email = data.email
+                user.phoneNumber = data.phone
+                user.address = data.address
+
+                await user.save()
+                res('done')
+            } else {
+                res('ok')
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    })
+}
+
+let deleteUser = (userID) => {
+    return new Promise(async (res, rej) => {
+        try {
+            let user = await db.User.findOne({
+                where: { id: userID },
+            })
+            if (user) {
+                await user.destroy()
+                res('done')
+            } else {
+                res('ok')
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    })
 }
 
 module.exports = {
+    deleteUser: deleteUser,
+    updateUserData: updateUserData,
+    getUserInfoById: getUserInfoById,
     createNewUser: createNewUser,
     getAllUser: getAllUser
 }
